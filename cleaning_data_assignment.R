@@ -1,5 +1,3 @@
-# Cleaning_Data_Pjct
-Assignment: Getting and Cleaning Data Course Project
 ##[1] Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012
 
 ##This dataset is distributed AS-IS and no responsibility implied or explicit can be addressed to the authors or their institutions for its use or misuse. Any commercial use is prohibited.
@@ -54,8 +52,8 @@ meanstd_data<-select(alldata, datatype, subject, label, contains("mean"), contai
 labels<-read.table("activity_labels.txt", header=FALSE) 
 
 meanstd_data$label<-factor(meanstd_data$label, levels=c(1, 2, 3, 4, 5, 6), 
-labels=c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING",
-         "LAYING"))
+                           labels=c("WALKING", "WALKING_UPSTAIRS", "WALKING_DOWNSTAIRS", "SITTING", "STANDING",
+                                    "LAYING"))
 
 ## 4.Appropriately labels the data set with descriptive variable names.
 ## make the following change to the variable names:
@@ -84,8 +82,8 @@ colnames(meanstd)<-Readable_Name
 
 
 average_data<-meanstd_data %>%
-  select(-datatype) %>%
-  group_by(subject, label) %>%
-  summarise_each(funs(mean))
+        select(-datatype) %>%
+        group_by(subject, label) %>%
+        summarise_each(funs(mean))
 
 write.table(avedata, file="average_data.txt", row.names=FALSE, col.names=TRUE)
